@@ -5,6 +5,7 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import '../styles/Navbar.css'
 import Home from './Home';
 import Movies from './Movies';
+import SingleMovie from './SingleMovie';
 
 export const Container = React.createContext();
 
@@ -36,6 +37,7 @@ export default function NavBar() {
         <Routes>
           <Route path="/" element={<Home />} ></Route>
           <Route path="/movies" element={<Movies />} ></Route>
+          <Route path="/single" element={<SingleMovie />}></Route>
         </Routes>
       </Fragment>
     </Container.Provider>
