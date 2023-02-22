@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { HiSearch } from 'react-icons/hi';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import '../styles/Navbar.css'
+import BookingPage from './BookingPage';
 import Home from './Home';
 import Movies from './Movies';
 import SingleMovie from './SingleMovie';
@@ -38,6 +39,7 @@ export default function NavBar() {
           <Route path="/" element={<Home />} ></Route>
           <Route path="/movies" element={<Movies />} ></Route>
           <Route path="/single" element={<SingleMovie />}></Route>
+          <Route path="/book" element={<BookingPage />}></Route>
         </Routes>
       </Fragment>
     </Container.Provider>

@@ -32,7 +32,7 @@ export default function SingleMovie() {
                             <p className="card-text">{movie.director}</p>
                             <div style={{ position: "relative" }}>
                                 <button className='button1' onClick={() => { navigate("/") }}>Go Back</button>
-                                <button className='button2' >Book Ticket</button>
+                                <button className='button2' onClick={() => {navigate("/book")}}>Book Ticket</button>
                             </div>
                             <p></p>
                         </div>
