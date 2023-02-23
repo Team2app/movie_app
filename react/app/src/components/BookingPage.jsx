@@ -47,11 +47,11 @@ export default function BookingPage() {
                     <h4>Sold</h4>
                 </li>
             </ul>
-            <div className='container'>
-                <div className='screen'></div>
+            <div className='container-single'>
+                <div className='screen-book'></div>
                 {
                     rows.map((row)=>{
-                        return (<div className='row' key={row.id}>
+                        return (<div className='row-single' key={row.id}>
                             {seats.map((seat)=>{
                                 return (<div className={selectedSeats.includes(row.value+seat.id) && !selseats.includes(row.value+seat.id) ?'seat selected' : selseats.includes(row.value+seat.id) ? 'seat sold' : seat.seat} onClick={(e)=>{ selectedSeats.includes(row.value+seat.id) ?setSelectedSeats(selectedSeats.filter(s=>!s.includes(row.value+seat.id))) :setSelectedSeats([...selectedSeats,row.value+seat.id]);  selectedSeats.includes(row.value+seat.id) ? handleClickS(selseats.includes(row.value+seat.id)) : handleClickA(selseats.includes(row.value+seat.id)) }} key={row.value + seat.id}></div>)
                             })}

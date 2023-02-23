@@ -30,7 +30,7 @@
     appearance: none;
 }
 
-.continer {
+.continer-single {
     perspective: 1000px;
     margin-bottom: 30px;
 }
@@ -91,11 +91,11 @@
     margin-left: 1px;
 }
 
-.row {
+.row-single {
     display: flex;
 }
 
-.screen {
+.screen-book {
     background-color: #fff;
     height: 120px;
     width: 100%;

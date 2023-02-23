@@ -25,9 +25,9 @@ export default function NavBar() {
               <span id={toggle ? 'Movies' : 'MoviesLight'} >Movies</span>
             </NavLink>
           </div>
-          <div className='input-group'>
+          <div className='input-group-nav'>
             <input type="text" placeholder='Search the city' />
-            <HiSearch fontSize={21} color="green" id='search' />
+            <HiSearch fontSize={21} color="green" style={{marginLeft:"290px"}} id='search' />
             <div id='Color-switcher' onClick={() => setToggle(!toggle)}>
               <div id={toggle ? 'Color-switcher-mover' : 'Color-switcher-moved'}>
 

@@ -45,7 +45,7 @@ span #HomeLight:hover, #MoviesLight:hover, #TrendingLight:hover, #PricingLight:h
     border-bottom: 2px solid #ff206e;    
     padding-bottom: 5px;
 }
-.input-group{    
+.input-group-nav{    
     display: flex;    
     align-items: center;
 }
@@ -77,26 +77,26 @@ span #HomeLight:hover, #MoviesLight:hover, #TrendingLight:hover, #PricingLight:h
     border-radius: 50%;    
     transition: .6s;
 }
-.input-group input{    
+.input-group-nav input{    
     position: relative;    
     width: 323px;    
     height: 4vh;    
     border-radius: 16px;    
     border: none;    
     margin-right: 30px;
+    padding: 18px;
 }
-.input-group input[type='text']{    
+.input-group-nav input[type='text']{    
     padding-left: 17px;    
     font-size: 1rem;    
     color: black;
 }
-.input-group input::placeholder{    
+.input-group-nav input::placeholder{    
     color: black;
 }
-.input-group input:focus{    
+.input-group-nav input:focus{    
     outline: none;
 }
 #search{    
-    position: absolute;    
-    margin-left: 310px;
+    position: absolute; 
 }
