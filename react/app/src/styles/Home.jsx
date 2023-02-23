@@ -60,12 +60,8 @@ export const useStyles = makeStyles((theme) => ({
         position: " absolute",
         left: "20px",
     },
+    
 
-    arrow: {
-        lineHeight: "40px",
-        position: " absolute",
-        left: "95px",
-        margin: "auto"
-    },
+    
 }
 ));

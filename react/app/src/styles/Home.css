@@ -1,0 +1,78 @@
+.body-arrow{
+    display: flex;
+    background-color: #fff;
+    flex-flow: wrap column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+
+}
+
+.circle-1{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.btn:hover .circle-1{
+    transform:scale(0)
+}
+
+.circle-2{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #000;
+    border-radius: 50%;
+    left: 8px;
+    transform: scale(0);
+    transition: .5s;
+}
+
+.circle-2:before{
+    content:'';
+    position: absolute;
+    width: 45px;
+    height: 5px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circle-2:after{
+    content:'';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-top: 5px solid #fff;
+    border-right: 5px solid #fff;
+    top: 50%;
+    left: 45%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.btn:hover .circle-2{
+    transform: scale(1);
+}
+.text{
+    font-size: 30px;
+    color: white;
+    letter-spacing: 1px;
+    transform:translateX(55px);
+    transition: .5s;
+}
+
+.btn:hover .text{
+    transform:translateX(115px);
+}

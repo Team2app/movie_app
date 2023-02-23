@@ -11,7 +11,7 @@ export default function Home() {
 
       <Box className={classes.Headercontaier}>
         <Typography varinat='h3' component='h4' className={classes.headerTitle}>
-        <span style={{ paddingRight: "5px" }}></span>
+          <span style={{ paddingRight: "5px" }}></span>
           <Typed
             strings={[" Welcome to IncedoFlix", " Book Movie Tickets Here", " Login / Register"]}
             typeSpeed={30}
@@ -25,13 +25,15 @@ export default function Home() {
           Login and Book .:{")"}
         </Typography>
 
-        <Box className = {classes.decorator}>
-          <Typography variant="span" className={classes.decoratorText}>
-            Login
-          </Typography>
-          <Typography variant="span" className={classes.arrow}>
-            
-          </Typography>
+        <Box className={classes.decorator}>
+          
+          <div className="body-arrow">
+            <button className="btn">
+              <span className="circle-1"></span>
+              <span className="circle-2"></span>
+              <span className="text">Login</span>
+            </button>
+          </div>
         </Box>
       </Box>
     </Box>
