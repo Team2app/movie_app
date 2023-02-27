@@ -20,14 +20,8 @@ export default function SingleMovie() {
                         </figure>
                         <div className="card-content">
                             <p className="title">{movie.title}</p>
-                            <p className="card-text">{movie.year}</p>
-                            <p className='card-text'>{
-                                movie.genres.map((genre) => {
-                                    return (
-                                        <p className="card-text">{genre},</p>
-                                    )
-                                })
-                            }</p>
+                            <p className='card-text'>{movie.genres}</p>
+                            <p className='card-text'>{movie.rating}/10</p>
                             <p className="card-text">{movie.runtime}</p>
                             <p className="card-text">{movie.director}</p>
                             <div style={{ position: "relative" }}>

@@ -39,7 +39,7 @@ figure {
   padding: 0;
 }
 
-.movie-card img {
+.movie-card1 .movie-card2 img {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -48,11 +48,17 @@ figure {
   height: 100%;
 }
 
-.movie-card .title {
+.movie-card1 .movie-card2 .title {
   font-size: 2.8rem;
   color: var(--text-clr);
   font-weight: bold;
   margin: auto;
+}
+
+.title {
+  font-size: 2.8rem;
+  margin: auto;
+  display:inline;
 }
 
 .card-content {

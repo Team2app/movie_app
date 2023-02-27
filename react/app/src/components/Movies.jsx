@@ -19,6 +19,7 @@ export default function Movies() {
     const data = await axios.get(Api)
     const results = data.data;
     setMovieData(results);
+    console.log(results)
   }
 
   useEffect(() => {

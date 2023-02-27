@@ -10,7 +10,7 @@ router.get('/data', async function(req, res, next) {
 
 function readUsers(){ 
     return new Promise((resolve,reject)=>{ 
-        fs.readFile("./data/data.json",(err,data)=>{ 
+        fs.readFile("./data/movies.json",(err,data)=>{ 
             var allUsers = JSON.parse(Buffer.from(data).toString()); 
             resolve(allUsers);
         }); 
