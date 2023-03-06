@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { useStyles } from "../styles/Home.jsx";
+import '../styles/Home.css'
 import Typed from "react-typed";
 
 export default function Home() {
@@ -24,17 +25,13 @@ export default function Home() {
           <br />
           Login and Book .:{")"}
         </Typography>
-
-        <Box className={classes.decorator}>
-          
-          <div className="body-arrow">
-            <button className="btn">
-              <span className="circle-1"></span>
-              <span className="circle-2"></span>
-              <span className="text">Login</span>
-            </button>
-          </div>
-        </Box>
+        <div className="body-arrow">
+          <button className="btn">
+            <span className="circle-1"></span>
+            <span className="circle-2"></span>
+            <span className="text">Login</span>
+          </button>
+        </div>
       </Box>
     </Box>
   );

@@ -1,6 +1,6 @@
 .body-arrow{
     display: flex;
-    background-color: #fff;
+    background-color: linear-gradient(to bottom right,#04303140, #00606473);
     flex-flow: wrap column;
     justify-content: center;
     align-items: center;
