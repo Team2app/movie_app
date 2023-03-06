@@ -9,11 +9,20 @@ export const getMoviesAction = createAsyncThunk(
     }
 );
 
+export const pseudoMoviesAction = createAsyncThunk(
+    'pseudoMovieData',
+    async ()=>{
+        const response = await axios.get('http://localhost:3000/data/read');
+        return response.data;
+    }
+);
+
 export const Slice = createSlice({
     name:'movie_app',
     initialState:{
         users:[],
-        movies:[]
+        movies:[],
+        movies1:[]
     },
     reducers:{
         getMovieData: ()=>{},
@@ -27,6 +36,15 @@ export const Slice = createSlice({
             console.log("getMoviesAction is pending");
         })
         builder.addCase(getMoviesAction.rejected, (state, action)=>{
+            console.log("getMoviesAction is rejected");
+        })
+        builder.addCase(pseudoMoviesAction.fulfilled, (state, action)=>{
+            state.movies1 = action.payload;
+        })
+        builder.addCase(pseudoMoviesAction.pending, (state, action)=>{
+            console.log("getMoviesAction is pending");
+        })
+        builder.addCase(pseudoMoviesAction.rejected, (state, action)=>{
             console.log("getMoviesAction is rejected");
         })
     }

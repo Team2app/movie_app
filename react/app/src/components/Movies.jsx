@@ -7,11 +7,12 @@ import '../styles/Videos.css'
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesAction } from '../toolkit/Slice';
+import { getMoviesAction, pseudoMoviesAction } from '../toolkit/Slice';
 
 export default function Movies() {
   const movies = useSelector((state) => state.movie.movies);
-  console.log('movies list', movies);
+  const movies1 = useSelector((state) => state.movie.movies1);
+  console.log('movies list', movies1);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -20,11 +21,12 @@ export default function Movies() {
 
   const MovieCall = () =>{
     dispatch(getMoviesAction());
+    dispatch(pseudoMoviesAction());
+    setMovieData(movies1);
   }
 
   useEffect(() => {
     MovieCall();
-    setMovieData(movies);
   }, []);
 
   const handleClick = (movie) =>{

@@ -9,7 +9,6 @@ export default function SingleMovie() {
     const navigate = useNavigate();
     const { state } = useLocation();
     const movie = state;
-    console.log('object', state);
     return (
         <Fragment>
             <div className={toggle ? 'mainBgColor' : 'secondaryBgColor'} >
@@ -26,7 +25,7 @@ export default function SingleMovie() {
                             <p className="card-text">{movie.director}</p>
                             <div style={{ position: "relative" }}>
                                 <button className='button1' onClick={() => { navigate("/") }}>Go Back</button>
-                                <button className='button2' onClick={() => {navigate("/book")}}>Book Ticket</button>
+                                <button className='button2' onClick={() => {navigate("/book", {state:state})}}>Book Ticket</button>
                             </div>
                             <p></p>
                         </div>

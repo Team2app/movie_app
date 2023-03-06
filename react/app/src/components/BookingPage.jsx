@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../styles/BookingPage.css';
 export default function BookingPage() {
+    const {state} = useLocation()
+    console.log(state);
     const [seats,setSeats] = useState([{id:1, value:0, seat:"seat"},{id:2, value:true, seat:"seat"},{id:3, value:0, seat:"seat"},{id:4, value:0, seat:"seat"},{id:5, value:0, seat:"seat"},{id:6, value:0, seat:"seat"},{id:7, value:0, seat:"seat"},{id:8, value:0, seat:"seat"}]);
     const [rows,setRows] = useState([{id:1, value:"A"},{id:2, value:"B"},{id:3, value:"C"},{id:4, value:"D"},{id:5, value:"E"},{id:6, value:"F"},{id:7, value:"G"},{id:8, value:"H"}]);
-    const [selseats, setSelseats] = useState(["A3", "B4", "D7", "H8", "F7"])
+    //const [state.sold, setstate.sold] = useState(["A3", "B4", "D7", "H8", "F7"])
     const [selectedSeats,setSelectedSeats] = useState([]);
     const [count, setCount] = useState(0);
     const [total, setTotal] = useState(0);
-    const [price, setPrice] = useState(1);
+    //const [state.price, setstate.price] = useState(1);
     const [c, setC] = useState(0);
     const handleClickA = (val) =>{
         if(!val){
             setCount(selectedSeats.length-c+1);
-            setTotal((selectedSeats.length-c+1)*price);
+            setTotal((selectedSeats.length-c+1)*state.price);
         }
         else{
             setC(c+1);
@@ -21,7 +24,7 @@ export default function BookingPage() {
     const handleClickS = (val) =>{
         if(!val){
             setCount(selectedSeats.length - c - 1);
-            setTotal((selectedSeats.length - c - 1)*price);
+            setTotal((selectedSeats.length - c - 1)*state.price);
         }
         else{
             setC(c-1);
@@ -53,14 +56,14 @@ export default function BookingPage() {
                     rows.map((row)=>{
                         return (<div className='row-single' key={row.id}>
                             {seats.map((seat)=>{
-                                return (<div className={selectedSeats.includes(row.value+seat.id) && !selseats.includes(row.value+seat.id) ?'seat selected' : selseats.includes(row.value+seat.id) ? 'seat sold' : seat.seat} onClick={(e)=>{ selectedSeats.includes(row.value+seat.id) ?setSelectedSeats(selectedSeats.filter(s=>!s.includes(row.value+seat.id))) :setSelectedSeats([...selectedSeats,row.value+seat.id]);  selectedSeats.includes(row.value+seat.id) ? handleClickS(selseats.includes(row.value+seat.id)) : handleClickA(selseats.includes(row.value+seat.id)) }} key={row.value + seat.id}></div>)
+                                return (<div className={selectedSeats.includes(row.value+seat.id) && !state.sold.includes(row.value+seat.id) ?'seat selected' : state.sold.includes(row.value+seat.id) ? 'seat sold' : seat.seat} onClick={(e)=>{ selectedSeats.includes(row.value+seat.id) ?setSelectedSeats(selectedSeats.filter(s=>!s.includes(row.value+seat.id))) :setSelectedSeats([...selectedSeats,row.value+seat.id]);  selectedSeats.includes(row.value+seat.id) ? handleClickS(state.sold.includes(row.value+seat.id)) : handleClickA(state.sold.includes(row.value+seat.id)) }} key={row.value + seat.id}></div>)
                             })}
                         </div>)
                     })
                 }
             </div>
             <p className='text'>
-                You have selected <span id="count">{count}</span> seats for a price of Rs. <span id="total">{total}</span>
+                You have selected <span id="count">{count}</span> seats for a state.price of Rs. <span id="total">{total}</span>
             </p>
         </div>
     )
