@@ -4,8 +4,11 @@ import { HiSearch } from 'react-icons/hi';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import '../styles/Navbar.css'
 import BookingPage from './BookingPage';
+import ForgotPassword from './ForgotPassword';
 import Home from './Home';
+import Login from './Login';
 import Movies from './Movies';
+import Signup from './Signup';
 import SingleMovie from './SingleMovie';
 
 export const Container = React.createContext();
@@ -40,6 +43,10 @@ export default function NavBar() {
           <Route path="/movies" element={<Movies />} ></Route>
           <Route path="/single" element={<SingleMovie />}></Route>
           <Route path="/book" element={<BookingPage />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          
+          <Route path='/sign' element={<Signup />}></Route>
+          <Route path='/forgot' element={<ForgotPassword />}></Route>
         </Routes>
       </Fragment>
     </Container.Provider>

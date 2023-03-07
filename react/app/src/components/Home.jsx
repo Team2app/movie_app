@@ -3,9 +3,11 @@ import { Box, Typography } from "@material-ui/core";
 import { useStyles } from "../styles/Home.jsx";
 import '../styles/Home.css'
 import Typed from "react-typed";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <Box className={classes.HeardeWraper} id='Headder'>
@@ -26,7 +28,7 @@ export default function Home() {
           Login and Book .:{")"}
         </Typography>
         <div className="body-arrow">
-          <button className="btn">
+          <button className="btn" onClick={()=>navigate('/login')}>
             <span className="circle-1"></span>
             <span className="circle-2"></span>
             <span className="text">Login</span>
