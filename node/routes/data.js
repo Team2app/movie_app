@@ -12,15 +12,69 @@ var connection = mysql.createConnection({
     database: 'movie_book'
 });
 
+router.get('/users', async function (req, res, next) {
+    connection.query('SELECT * FROM movie_book.users', function (err, rows, fields) {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.json(rows);
+    })
+});
+
+// router.put('/users/:id', async function (req, res, next) {
+//     let id = req.params.id;
+//     var oldPass = req.body.password;
+//     var newPass = req.body.password1;
+//     var data = connection.query(`select * from movie_book.movies`, async (error, results, fields) => {
+//         var realUser;
+//         if (error) {
+//             return console.error(error.message);
+//         }
+
+//         results.forEach(user => {
+//             if (user.email === id) {
+//                 let bufferObj = Buffer.from(user.password, "base64");
+//                 let decodedString = bufferObj.toString("utf8");
+//                 user.password = JSON.parse(decodedString);
+//                 realUser = user;
+//             }
+//         });
+//         if (realUser.password === oldPass) {
+//             realUser.password = newPass;
+//             let pass = realUser.password;
+//             let password = JSON.stringify(pass);
+//             let bufpassword = Buffer.from(password, "utf8");
+//             let encodedPassword = bufpassword.toString('base64');
+//             connection.query(`update movie_book.users set password = '${encodedPassword}' where email = '${id}'`, function (err, rows, fields) {
+//                 if (err) {
+//                     return console.error(err.message);
+//                 }
+//                 res.send("updated successfully");
+//             })
+//         }
+//         else {
+//             res.send("wrong password");
+//         }
+//     })
+// })
+
+router.post('/sign', async function (req, res, next) {
+    var body = JSON.parse(req.body.body);
+    connection.query(`insert into movie_book.users values ('${body.email}', '${body.password}', 'inactive')`, function (err, rows, fields) {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.send("added successfully");
+    })
+})
+
 router.get("/create", async (req, res) => {
     var users = await readUsers();
     users.forEach(user => {
         let originalStrin = user.sold;
         let originalString = JSON.stringify(originalStrin);
-        let bufferObj = Buffer.from(originalString, "utf8");
-        let base64String = bufferObj.toString("base64");
 
-        connection.query(`insert into movie_book.movies values ( ${user.id}, '${user.title}', '${user.genres}', ${user.price}, ${user.rating}, '${user.runtime}', '${user.director}', '${user.posterUrl}', '${user.startdate}', '${user.enddate}', '${base64String}' )`, (error, results, fields) => {
+        connection.query(`insert into movie_book.movies values ( ${user.id}, '${user.title}', '${user.genres}', ${user.price}, ${user.rating}, '${user.runtime}', '${user.director}', '${user.posterUrl}', '${user.startdate}', '${user.enddate}', '${originalString}' )`, (error, results, fields) => {
             if (error) {
                 return console.error(error.message);
             }
@@ -30,15 +84,13 @@ router.get("/create", async (req, res) => {
 });
 
 router.get('/read', async (req, res) => {
-    var data = connection.query(`select * from movie_book.movies`, async (error, results, fields) => {
+    connection.query(`select * from movie_book.movies`, async (error, results, fields) => {
         if (error) {
             return console.error(error.message);
         }
 
         results.forEach(user => {
-            let bufferObj = Buffer.from(user.sold, "base64");
-            let decodedString = bufferObj.toString("utf8");
-            user.sold = JSON.parse(decodedString);
+            user.sold = JSON.parse(user.sold);
         });
         res.json(results);
     })

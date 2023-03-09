@@ -20,12 +20,12 @@ export default function Movies() {
   const [movieData, setMovieData] = useState([]);
 
   const MovieCall = () =>{
-    dispatch(getMoviesAction());
-    dispatch(pseudoMoviesAction());
     setMovieData(movies1);
   }
 
   useEffect(() => {
+    
+    dispatch(pseudoMoviesAction());
     MovieCall();
   }, []);
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/BookingPage.css';
 export default function BookingPage() {
+    const navigate = useNavigate();
     const {state} = useLocation()
     console.log(state);
     const [seats,setSeats] = useState([{id:1, value:0, seat:"seat"},{id:2, value:true, seat:"seat"},{id:3, value:0, seat:"seat"},{id:4, value:0, seat:"seat"},{id:5, value:0, seat:"seat"},{id:6, value:0, seat:"seat"},{id:7, value:0, seat:"seat"},{id:8, value:0, seat:"seat"}]);
@@ -10,6 +11,7 @@ export default function BookingPage() {
     const [selectedSeats,setSelectedSeats] = useState([]);
     const [count, setCount] = useState(0);
     const [total, setTotal] = useState(0);
+    const [date, setDate] = useState("");
     //const [state.price, setstate.price] = useState(1);
     const [c, setC] = useState(0);
     const handleClickA = (val) =>{
@@ -30,11 +32,25 @@ export default function BookingPage() {
             setC(c-1);
         }
     }
+    const ticketPop = () =>{
+        console.log("date", date)
+        const selected = new Date(date);
+        const start = new Date(state.startdate);
+        const end = new Date(state.enddate);
+        console.log("selcted", selected, "start", start, "end", end);
+        if(selected >= start && selected <= end){
+            alert(selectedSeats+" were booked of worth "+total);
+            navigate("/");
+        }
+        else{
+            alert("book in between "+start+" and "+end);
+        }
+    }
     return (
         <div className='body'>
             <div className="single-container">
                 <label>Select the date:</label>
-                <input type="date" id="single" name="birthday" />
+                <input type="date" id="single" name="birthday" onChange={(e)=>setDate(e.target.value)} />
             </div>
             <ul className='showcase'>
                 <li>
@@ -65,6 +81,9 @@ export default function BookingPage() {
             <p className='text'>
                 You have selected <span id="count">{count}</span> seats for a state.price of Rs. <span id="total">{total}</span>
             </p>
+            <center>
+                <button className='btn btn-primary' onClick={()=>ticketPop()}>Book Ticket</button>
+            </center>
         </div>
     )
 }
