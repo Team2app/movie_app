@@ -4,8 +4,10 @@ import { useStyles } from "../styles/Home.jsx";
 import '../styles/Home.css'
 import Typed from "react-typed";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const logged = useSelector(state=>state.movie.logged);
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -27,13 +29,13 @@ export default function Home() {
           <br />
           Login and Book .:{")"}
         </Typography>
-        <div className="body-arrow">
+        {!logged?<div className="body-arrow">
           <button className="btn" onClick={()=>navigate('/login')}>
             <span className="circle-1"></span>
             <span className="circle-2"></span>
             <span className="text">Login</span>
           </button>
-        </div>
+        </div>:""}
       </Box>
     </Box>
   );
