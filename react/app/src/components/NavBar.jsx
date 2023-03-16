@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import { useState } from 'react';
 import { HiSearch } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import '../styles/Navbar.css'
+import { getMovieData } from '../toolkit/Slice';
 import BookingPage from './BookingPage';
 import ForgotPassword from './ForgotPassword';
 import Home from './Home';
@@ -14,7 +16,11 @@ import SingleMovie from './SingleMovie';
 export const Container = React.createContext();
 
 export default function NavBar() {
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(true);
+  const handleSubmit = (e) =>{
+    dispatch(getMovieData(e.target.value));
+  }
   return (
     <Container.Provider value={{toggle}}>
       <Fragment>
@@ -29,7 +35,7 @@ export default function NavBar() {
             </NavLink>
           </div>
           <div className='input-group-nav'>
-            <input type="text" placeholder='Search the city' />
+            <input type="text" placeholder='Search the movie' onChange={(e)=>handleSubmit(e)} />
             <HiSearch fontSize={21} color="green" style={{marginLeft:"290px"}} id='search' />
             <div id='Color-switcher' onClick={() => setToggle(!toggle)}>
               <div id={toggle ? 'Color-switcher-mover' : 'Color-switcher-moved'}>

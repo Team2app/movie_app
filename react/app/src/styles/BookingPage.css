@@ -19,18 +19,19 @@
     margin: 20px 0;
 }
 
-.single-container input {
+.single-container input, select {
     background-color: #fff;
     border: 0;
     border-radius: 5px;
     font-size: 16px;
     margin-left: 10px;
+    margin-right: 10px;
     padding: 5px 15px 5px 15px;
     -moz-appearance: none;
     appearance: none;
 }
 
-.continer-single {
+.container-single {
     perspective: 1000px;
     margin-bottom: 30px;
 }

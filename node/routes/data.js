@@ -72,9 +72,13 @@ router.get("/create", async (req, res) => {
     var users = await readUsers();
     users.forEach(user => {
         let originalStrin = user.sold;
+        let originalStrin1 = user.theaters;
+        let originalStrin2 = user.shows;
         let originalString = JSON.stringify(originalStrin);
+        let originalString1 = JSON.stringify(originalStrin1);
+        let originalString2 = JSON.stringify(originalStrin2);
 
-        connection.query(`insert into movie_book.movies values ( ${user.id}, '${user.title}', '${user.genres}', ${user.price}, ${user.rating}, '${user.runtime}', '${user.director}', '${user.posterUrl}', '${user.startdate}', '${user.enddate}', '${originalString}' )`, (error, results, fields) => {
+        connection.query(`insert into movie_book.movies values ( ${user.id}, '${user.title}', '${user.genres}', ${user.price}, ${user.rating}, '${user.runtime}', '${user.director}', '${user.posterUrl}', '${user.startdate}', '${user.enddate}', '${originalString}', '${originalString1}', '${originalString2}' )`, (error, results, fields) => {
             if (error) {
                 return console.error(error.message);
             }
@@ -91,9 +95,34 @@ router.get('/read', async (req, res) => {
 
         results.forEach(user => {
             user.sold = JSON.parse(user.sold);
+            user.theaters = JSON.parse(user.theaters);
+            user.shows = JSON.parse(user.shows);
         });
         res.json(results);
     })
+});
+
+router.get('/read/:id', async (req, res) => {
+    let id = req.params.id;
+    id = id.toLowerCase();
+    connection.query(`select * from movie_book.movies`, async (error, results, fields) => {
+        if (error) {
+            return console.error(error.message);
+        }
+
+        results.forEach(user => {
+            user.sold = JSON.parse(user.sold);
+            user.theaters = JSON.parse(user.theaters);
+            user.shows = JSON.parse(user.shows);
+        });
+        results = results.filter((result)=>{
+            if(result.title.includes(id)){
+                return true;
+            }
+        })
+        res.json(results);
+    })
+
 })
 
 router.get('/data', async function (req, res, next) {

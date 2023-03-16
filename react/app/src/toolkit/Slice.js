@@ -11,11 +11,11 @@ export const getMoviesAction = createAsyncThunk(
 
 export const pseudoMoviesAction = createAsyncThunk(
     'pseudoMovieData',
-    async () => {
-        const response = await axios.get('http://localhost:3000/data/read');
+    async (val) => {
+        const response = await axios.get(`http://localhost:3000/data/read/${val}`);
         return response.data;
     }
-);
+)
 
 export const getUserAction = createAsyncThunk(
     'getUserData',
@@ -47,15 +47,18 @@ export const Slice = createSlice({
         users: [],
         movies: [],
         movies1: [],
-        logged:false
+        movie: "",
+        logged:false,
     },
     reducers: {
         getLogindata: (state, action) => {
-            console.log("lasdkfjlsadfjlkasdjf;sajdl")
-            state.logged = true;
+            state.logged = !state.logged;
             console.log(state.logged);
         },
-        getMovieData: () => { },
+        getMovieData: (state, action) => {
+            state.movie = action.payload;
+            console.log("action is" ,action.payload);
+        },
         getUsersData: () => { },
     },
     extraReducers: (builder) => {
